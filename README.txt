@@ -10,3 +10,4 @@
   background-color: #FAF8CC;
 }
 
+5.)  Copy advf-forum-post.tpl.php into your theme directory, this file loads up the comments.js with all the jquery goodness
