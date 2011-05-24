@@ -1,0 +1,7 @@
+; $Id$
+name = Mark as Read 
+description = Theming, javascript, and the ability to highlight what's been read in advanced forums.
+package = Babson Development
+dependencies[] = nodecomment
+core = 6.x
+

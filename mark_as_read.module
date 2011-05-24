@@ -1,0 +1,53 @@
+<?php 
+/**
+ * @file
+ * Theming, javascript, and the ability to highlight what's been read in advanced forums. 
+ */
+/**
+ * Implementation of hook_menu() .
+ */
+function mark_as_read_menu() {
+
+  $items = array();
+
+  $items['mark_as_read' ] = array(
+'title' => 'Mark as read', 
+'page callback' => 'mark_as_read_ajax',
+'access arguments' => array('access content'),
+  );
+  $items['see_if_read' ] = array(
+'title' => 'See if Read', 
+'page callback' => 'see_if_read_ajax',
+'access arguments' => array('access content'),
+  );
+ 
+  return $items;
+}
+
+function mark_as_read_ajax() {
+  global $user;
+  $commentid=($_POST["commentid"]);
+  watchdog('notice','commentid is'.$commentid.' and user id is'.$user->uid);
+  $result = db_query("INSERT INTO {history} (uid, nid)
+                        VALUES (%d, %d)",$user->uid, $commentid
+                      );
+	
+}
+
+function see_if_read_ajax(){
+  global $user;
+  $theids=($_POST["theids"]);
+  $pieces = explode(",", $theids);
+  //watchdog('notice',print_r($pieces));
+  $already_read="";
+  foreach ($pieces as $id ) {
+    //watchdog('notice',$id);
+    $result=db_result(db_query('Select uid from {history} where uid = %d and nid=%d',$user->uid,$id));
+    if($result){
+    	$already_read .= $id.",";
+    }
+  	
+  }
+  echo $already_read;
+	
+}
