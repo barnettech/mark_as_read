@@ -7,7 +7,7 @@
     <?php print $picture ?>
 
     <?php if ($page == 0): ?>
-    <div class="read"> NEW POST</div><h2 class="title"><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
+    <h2 class="title"><span class="read"> NEW POST:  </span><a href="<?php print $node_url ?>" title="<?php print $title ?>"><?php print $title ?></a></h2>
     <?php endif; ?>
 
     <?php if ($node_top && !$teaser): ?>
@@ -36,7 +36,7 @@
 
     <?php if ($links): ?>
     <div class="links">
-      <?php print $links.'<br />&nbsp;&nbsp;<span id="mark-as-read"><input type="checkbox" name="read" value="read" /> Mark as Read</span>&nbsp;&nbsp;  <span id="mark-as-unread"><input type="checkbox" name="unread" value="unread" /> Mark as Unread</span>'; ?>
+      <?php print $links.'<br />&nbsp;&nbsp;<span class="read-more" id="mark-as-read"><input type="checkbox" name="read" value="read" /> Mark as Read</span>&nbsp;&nbsp;  <span class="read-more" id="mark-as-unread"><input type="checkbox" name="unread" value="unread" /> Mark as Unread</span>'; ?>
     </div>
     <?php endif; ?>
   </div><!-- /inner -->
