@@ -15,6 +15,11 @@ function mark_as_read_menu() {
 'page callback' => 'mark_as_read_ajax',
 'access arguments' => array('access content'),
   );
+  $items['mark_as_unread' ] = array(
+'title' => 'Mark as unread', 
+'page callback' => 'mark_as_unread_ajax',
+'access arguments' => array('access content'),
+  );
   $items['see_if_read' ] = array(
 'title' => 'See if Read', 
 'page callback' => 'see_if_read_ajax',
@@ -27,11 +32,20 @@ function mark_as_read_menu() {
 function mark_as_read_ajax() {
   global $user;
   $commentid=($_POST["commentid"]);
-  watchdog('notice','commentid is'.$commentid.' and user id is'.$user->uid);
   $result = db_query("INSERT INTO {history} (uid, nid)
                         VALUES (%d, %d)",$user->uid, $commentid
                       );
 	
+}
+
+function mark_as_unread_ajax() {
+  global $user;
+  $commentid=($_POST["commentid"]);
+  watchdog('notice','commentid is'.$commentid.' and user id is'.$user->uid);
+  $result = db_query("DELETE FROM {history} where uid = %d and nid = %d",
+                       $user->uid, $commentid
+                      );
+                      
 }
 
 function see_if_read_ajax(){

@@ -82,6 +82,6 @@
       <div class="forum-post-links">
         <?php print $links ?>
       </div>
-    <?php endif; ?>
+    <?php endif; ?><div id="expand-all"><input type="checkbox" name="vehicle" value="Bike" /> Expand all comments<br /></div>
   </div>
 </div>
